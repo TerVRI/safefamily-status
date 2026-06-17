@@ -44,6 +44,7 @@ jobs:
           command: site
         env:
           GH_PAT: ${{ secrets.GH_PAT || github.token }}
+          CYPRESS_INSTALL_BINARY: 0
       - name: GitHub Pages Deploy
         uses: peaceiris/actions-gh-pages@v4
         with:
