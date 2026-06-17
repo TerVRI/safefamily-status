@@ -1,0 +1,34 @@
+#
+# Upptime response-time graphs — config in .upptimerc.yml
+
+name: Graphs CI
+on:
+  schedule:
+    - cron: '0 0 * * *'
+  repository_dispatch:
+    types: [graphs]
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.repository }}-upptime
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    name: Generate graphs
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          ref: ${{ github.head_ref || github.ref_name }}
+          token: ${{ secrets.GH_PAT || github.token }}
+      - name: Generate graphs
+        uses: upptime/uptime-monitor@v1.42.6
+        with:
+          command: graphs
+        env:
+          GH_PAT: ${{ secrets.GH_PAT || github.token }}

@@ -1,0 +1,49 @@
+owner: TerVRI
+repo: safefamily-status
+user-agent: TerVRI
+
+# Cloudflare-protected endpoints use Globalping so probes run from real edge
+# networks instead of GitHub Actions datacenter IPs (which often get 403).
+sites:
+  - name: SafeFamily Website
+    url: https://safefamily.ie
+    type: globalping
+    location: ireland
+    icon: https://safefamily.ie/icons/apple-touch-icon.png
+  - name: Parent Dashboard
+    url: https://app.safefamily.ie
+    type: globalping
+    location: ireland
+    icon: https://safefamily.ie/icons/apple-touch-icon.png
+  - name: SafeFamily API
+    url: https://api.safefamily.ie/health
+    slug: api
+    __dangerous__body_down_if_text_missing: '"status":"ok"'
+  - name: Pricing Page
+    url: https://safefamily.ie/pricing
+    type: globalping
+    location: ireland
+    icon: https://safefamily.ie/icons/apple-touch-icon.png
+
+status-website:
+  cname: status.safefamily.ie
+  name: SafeFamily Status
+  logoUrl: https://safefamily.ie/icons/apple-touch-icon.png
+  favicon: https://safefamily.ie/icons/apple-touch-icon.png
+  theme: light
+  introTitle: '**SafeFamily service status**'
+  introMessage: |
+    Real-time health for the SafeFamily website, parent app, and API.
+    If something looks wrong here, we are likely already working on it.
+    For account help, contact [hello@safefamily.ie](mailto:hello@safefamily.ie).
+  navbar:
+    - title: Status
+      href: /
+    - title: SafeFamily
+      href: https://safefamily.ie
+    - title: Support
+      href: https://safefamily.ie/support
+
+skipDescriptionUpdate: true
+skipTopicsUpdate: true
+skipHomepageUpdate: true
